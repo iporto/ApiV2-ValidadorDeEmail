@@ -1,268 +1,486 @@
-
-Flatdoc
+VALIDADOR DE E-MAIL
 =======
 
-Flatdoc is a small JavaScript file that fetches Markdown files and renders them
-as full pages. Essentially, it's the easiest
-way to make open source documentation from *Readme* files.
-
- * No server-side components
- * No build process needed
- * Deployable via GitHub Pages
- * Can fetch GitHub Readme files
- * Gorgeous default theme (and it's responsive)
- * Just create an HTML file and deploy!
-
-*Current version: [v0.9.0][dist]*
-
-[![Build Status](https://travis-ci.org/rstacruz/flatdoc.svg?branch=gh-pages)](https://travis-ci.org/rstacruz/flatdoc)
-
-Getting started
+API
 ---------------
+O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a API iPORTO, para Validador de E-mail, descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
-Create a file based on the template, which has a bare DOM, link to the
-scripts, and a link to a theme. It will look something like this (not exact).
-For GitHub projects, simply place this file in your [GitHub pages] branch and
-you're all good to go.
+O mecanismo de integração com o Validador de E-mail é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Validador de E-mail com sucesso.
 
-*In short: just download this file and upload it somewhere.*
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API iPORTO, para Validador de E-mail. Estas operações devem ser executadas utilizando sua chave de API (iPORTO_Api_ChavePublica).
 
-The main JS and CSS files are also available in [npm] and [bower].
+*Current version: [v2.0.0][stable]*
 
-[Default theme template >][template]
+### Suporte
+Após a leitura deste manual, caso ainda persistam dúvidas, a iPORTO disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, via Chamado Técnico em sua Central do Cliente:
+* [Central do Cliente](https://painel.iporto.com.br)
 
-[Blank template >][blank]
+### Uso
+Para utilização da API é preciso possuir um cadastro ativo na iPORTO. Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
+* [Planos para Validador de E-mail](https://iporto.com.br/validador-de-email)
 
-[bower]: http://bower.io/search/?q=flatdoc
-[npm]: https://www.npmjs.org/package/flatdoc
-
-### Via GitHub
-
-To fetch a Github Repository's readme file, use the `Flatdoc.github` fetcher.
-This will fetch the Readme file of the repository's default branch.
-
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO')
-});
-```
-
-You may also fetch another file other than the Readme file, just specify it as
-the 2nd parameter.
-
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.github('USER/REPO', 'Changelog.md')
-});
-```
-
-After you've done this, you probably want to deploy it via [GitHub Pages].
-
-[GitHub Pages guide >][GitHub Pages]
-
-### Via a file
-
-You may also fetch a file. In this example, this fetches the file `Readme.md` in
-the same folder as the HTML file.
-
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('Readme.md')
-});
-```
-
-You may actually supply any URL here. It will be fetched via AJAX. This is
-useful for local testing.
-
-``` javascript
-Flatdoc.run({
-  fetcher: Flatdoc.file('http://yoursite.com/Readme.md')
-});
-```
-
-How it works
-------------
-
-Flatdoc is a hosted `.js` file (along with a theme and its assets) that you can
-add into any page hosted anywhere.
-
-#### All client-side
-
-There are no build scripts or 3rd-party services involved. Everything is done in
-the browser. Worried about performance? Oh, It's pretty fast.
-
-Flatdoc utilizes the [GitHub API] to fetch your project's Readme files. You may
-also configure it to fetch any arbitrary URL via AJAX.
-
-#### Lightning-fast parsing
-
-Next, it uses [marked], an extremely fast Markdown parser that has support for
-GitHub flavored Markdown.
-
-Flatdoc then simply renders *menu* and *content* DOM elements to your HTML
-document. Flatdoc also comes with a default theme to style your page for you, or
-you may opt to create your own styles.
-
-Markdown extras
+Começar a usar
 ---------------
+Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere uma nova Chave de API. É preciso possuir uma Chave de API válida, um cadastro ativo e plano contratado.
 
-Flatdoc offers a few harmless, unobtrusive extras that come in handy in building
-documentation sites.
+### Limites
+Cada Chave de API permite o limite de até 5.000 requisições ao dia. Para um uso maior, é preciso solicitar liberação através da Central de Atendimento, que pode ser verificado na guia Suporte desta documentação.
 
-#### Code highlighting
+### EndPoint
+Toda requisição tem como base:
+ `https://api-v2.iporto.com.br/api-v2/`
 
-You can use Markdown code fences to make syntax-highlighted text. Simply
-surround your text with three backticks. This works in GitHub as well.
-See [GitHub Syntax Highlighting][fences] for more info.
+### Requisição
+Cada requisição, para Validador de E-mail, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. Todas as requisições devem ser feitas via `https`.
 
-    ``` html
-    <strong>Hola, mundo</strong>
-    ```
-
-#### Blockquotes
-
-Blockquotes show up as side figures. This is useful for providing side
-information or non-code examples.
-
-> Blockquotes are blocks that begin with `>`.
-
-#### Smart quotes
-
-Single quotes, double quotes, and double-hyphens are automatically replaced to
-their typographically-accurate equivalent. This, of course, does not apply to
-`<code>` and `<pre>` blocks to leave code alone.
-
-> "From a certain point onward there is no longer any turning back. That is the
-> point that must be reached."  
-> --Franz Kafka
-
-#### Buttons
-
-If your link text has a `>` at the end (for instance: `Continue >`), they show
-up as buttons.
-
-> [View in GitHub >][project]
-
-Customizing
-===========
-
-Basic
------
-
-### Theme options
-
-For the default theme (*theme-white*), You can set theme options by adding
-classes to the `<body>` element. The available options are:
-
-#### big-h3
-Makes 3rd-level headings bigger.
-
-``` html
-<body class='big-h3'>
+* Exemplo de requisição:
+```curl
+https://api-v2.iporto.com.br/api-v2
+/get
+/email/xx@domain.com
+/iPORTO_Api_ChavePublica/xx
 ```
 
-#### no-literate
-Disables "literate" mode, where code appears on the right and content text
-appear on the left.
+### Resposta
+Toda resposta da API utiliza padrão `REST`, neste caso, `RESTful JSON`.
+* [Definição de REST via Wikipedia](https://pt.wikipedia.org/wiki/REST)
+* [Especificações JSON para API](http://jsonapi.org/)
 
-``` html
-<body class='no-literate'>
+Estrutura do Uso
+------------
+| Propriedade | Descrição
+|--|--|
+| `string` **iPORTO_Api_ChavePublica** | `Obrigatório`. Chave de API que será utilizada para autorizar a requisição.
+|                   `string` **email** | `Obrigatório`. E-mail que será validado.
+
+Estrutura da Resposta
+------------
+| Propriedade | Descrição |
+|--|--|
+|   jsonapi | Versão atual da API.
+|      meta | Dados sobre a API.
+|     links | Links utilizados para a requisição.
+|  messages | Mensagens sobre a requisição.
+|      data | Itens retornados sobre a requisição. 
+
+### Attributes
+Disposição de atributos retornados para cada requisição.
+
+#### meta
+| Array | Propriedade | Descrição |
+|--|--|--|
+| meta  | | |
+|  `{}` | `string` email 		| E-mail que foi utilizado para validação.
+|  `{}` | `string` domain 		| Domínio do E-mail que foi utilizado para validação.
+|  `{}` | `string` tld 			| TLD do Domínio do E-mail que foi utilizado para validação.
+|  `{}` | `string` subDomain 	| Subdomínio do Domínio do E-mail que foi utilizado para validação.
+|  `{}` | `string` user 		| Usuário de E-mail.
+|  `{}` | `string` emailMd5 	| Validação MD5 do E-mail que foi utilizado para validação.
+
+#### diagnostic
+| Array | Propriedade | Descrição |
+|--|--|--|
+| diagnostic  | | |
+|  `{}` | `string` key 	| Chave que identifica a requisição.
+|  `{}` | `string` dts 	| Data, Hora, Minuto e Segundo em que a requisição foi iniciada.
+|  `{}` | `string` dte 	| Data, Hora, Minuto e Segundo em que a requisição foi finalizada.
+|  `{}` | `array` dtl 	| Histórico com Data, Hora, Minuto e Segundo de cada requisição principal.
+
+#### disposition
+| Array | Propriedade | Descrição |
+|--|--|--|
+| disposition  | | |
+|  `{}` | `boolean` isValid 		| Informação de que um E-mail é realmente válido.
+|  `{}` | `boolean` isValidFormat 	| Informação de que a sintax de um E-mail é válido.
+|  `{}` | `boolean` isDisposable 	| Informação de que um E-mail utiliza serviços de E-mails temporário e são descartáveis.
+|  `{}` | `boolean` isGibberish 	| Informação de que um E-mail é do tipo Gibberish ou apenas um E-mail com digitação randômica.
+|  `{}` | `boolean` isBank 			| Informação de que o E-mail é de uma instituição Bancária.
+|  `{}` | `boolean` isGov 			| Informação de que o E-mail é de uma instituição Governamental.
+|  `{}` | `boolean` isFree 			| Informação de que o E-mail é gratuito.
+|  `{}` | `boolean` isName 			| Informação de que o Usuário do E-mail é um Nome Próprio.
+|  `{}` | `boolean` isRole 			| Informação de que o E-mail é do tipo Regra de entraga.
+|  `{}` | `boolean` isTrap 			| Informação de que o E-mail é uma armadilha para capturar Spam.
+|  `{}` | `boolean` isKnowError 	| Informação de que o Domínio é conhecido como diversos erros de envio.
+|  `{}` | `boolean` isTypingError 	| Informação de que o E-mail ou o Domínio é um erro de digitação.
+|  `{}` | `boolean` isCatchAll 		| Informação de que o Domínio aceita qualquer tipo de E-mail, inválido ou não.
+
+#### didYouMean
+| Array | Propriedade | Descrição |
+|--|--|--|
+| didYouMean  | | |
+|  `{}` | `array` didYouMean | x
+
+#### emailVerification
+| Array | Array | Propriedade | Descrição |
+|--|--|--|--|
+| emailVerification | | | |
+|  `{}` | `syntaxVerification` 	| `boolean` isSyntaxValid 			| x
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasDnsRecord 	| x
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasWebRecord 	| x
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasMxRecords 	| x
+|  `{}` | `dnsVerification` 	| `array` recordDns 				| x
+|  `{}` | `dnsVerification` 	| `array` recordWeb 				| x
+|  `{}` | `dnsVerification` 	| `array` recordMx 					| x
+|  `{}` | `mailboxVerification` | `array` 							| x
+
+#### infrastructure
+| Array | Array | Propriedade | Descrição |
+|--|--|--|--|
+| infrastructure  | | | |
+|  `{}` | `mail` | `string` isSyntaxValid | x
+
+#### sendAssess
+| Array | Propriedade | Descrição |
+|--|--|--|
+| sendAssess  | | |
+|  `{}` | `int` inboxQualityScore 		| x
+|  `{}` | `string` sendRecommendation 	| x
+|  `{}` | `string` sendStatus 			| x
+
+#### spamAssess
+| Array | Propriedade | Descrição |
+|--|--|--|
+| spamAssess  | | |
+|  `{}` | `array` | x
+
+#### social
+| Array | Propriedade | Descrição |
+|--|--|--|
+| social  | | |
+|  `{}` | `array` | x
+
+
+### Json
+```
+object(stdClass)#1 (7) {
+  ["status"]=>
+  int(200)
+  ["jsonapi"]=>
+  object(stdClass)#2 (1) {
+    ["version"]=>
+    string(5) "2.0.0"
+  }
+  ["meta"]=>
+  object(stdClass)#3 (3) {
+    ["copyright"]=>
+    string(10) "iPORTO.COM"
+    ["authors"]=>
+    array(1) {
+      [0]=>
+      string(14) "api@iporto.com"
+    }
+    ["limits"]=>
+    object(stdClass)#4 (1) {
+      ["maxRequestsPerDay"]=>
+      string(4) "5000"
+    }
+  }
+  ["links"]=>
+  array(1) {
+    [0]=>
+    string(99) "/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx"
+  }
+  ["errors"]=>
+  NULL
+  ["messages"]=>
+  array(0) {
+  }
+  ["data"]=>
+  object(stdClass)#5 (2) {
+    ["count"]=>
+    int(1)
+    ["itens"]=>
+    array(1) {
+      [0]=>
+      object(stdClass)#6 (3) {
+        ["type"]=>
+        string(5) "email"
+        ["id"]=>
+        NULL
+        ["attributes"]=>
+        object(stdClass)#7 (9) {
+          ["meta"]=>
+          object(stdClass)#8 (6) {
+            ["email"]=>
+            string(16) "xx@domain.com"
+            ["domain"]=>
+            string(10) "domain.com"
+            ["tld"]=>
+            string(3) "com"
+            ["subDomain"]=>
+            NULL
+            ["user"]=>
+            string(5) "xx"
+            ["emailMd5"]=>
+            string(32) "65ab4c7baf42aa70b74e8cb7887bd6b5"
+          }
+          ["diagnostic"]=>
+          object(stdClass)#9 (4) {
+            ["key"]=>
+            string(32) "0f491c593a62b7fd875a68eef924e9a0"
+            ["dts"]=>
+            string(19) "2017-07-02 15:09:02"
+            ["dte"]=>
+            string(19) "2017-07-02 15:09:06"
+            ["dtl"]=>
+            array(7) {
+              [0]=>
+              array(2) {
+                [0]=>
+                string(18) "metaHeaderAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:02"
+              }
+              [1]=>
+              array(2) {
+                [0]=>
+                string(28) "metaDispositionIsAllAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:02"
+              }
+              [2]=>
+              array(2) {
+                [0]=>
+                string(29) "metaEmailVerificationAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:03"
+              }
+              [3]=>
+              array(2) {
+                [0]=>
+                string(30) "metaDispositionIsValidAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:06"
+              }
+              [4]=>
+              array(2) {
+                [0]=>
+                string(26) "metaInfrastructureAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:06"
+              }
+              [5]=>
+              array(2) {
+                [0]=>
+                string(27) "metaSendAssessInboxAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:06"
+              }
+              [6]=>
+              array(2) {
+                [0]=>
+                string(35) "metaSendAssessRecomendationAnalytic"
+                [1]=>
+                string(19) "2017-07-02 15:09:06"
+              }
+            }
+          }
+          ["disposition"]=>
+          object(stdClass)#10 (12) {
+            ["isValid"]=>
+            bool(true)
+            ["isValidFormat"]=>
+            bool(true)
+            ["isDisposable"]=>
+            bool(false)
+            ["isGibberish"]=>
+            bool(false)
+            ["isBank"]=>
+            bool(false)
+            ["isFree"]=>
+            bool(false)
+            ["isName"]=>
+            bool(false)
+            ["isRole"]=>
+            bool(false)
+            ["isTrap"]=>
+            bool(false)
+            ["isKnowError"]=>
+            bool(false)
+            ["isTypingError"]=>
+            bool(false)
+            ["isCatchAll"]=>
+            bool(false)
+          }
+          ["didYouMean"]=>
+          array(0) {
+          }
+          ["emailVerification"]=>
+          object(stdClass)#11 (3) {
+            ["syntaxVerification"]=>
+            object(stdClass)#12 (1) {
+              ["isSyntaxValid"]=>
+              bool(true)
+            }
+            ["dnsVerification"]=>
+            object(stdClass)#13 (6) {
+              ["isDomainHasDnsRecord"]=>
+              bool(true)
+              ["isDomainHasWebRecord"]=>
+              bool(true)
+              ["isDomainHasMxRecords"]=>
+              bool(true)
+              ["recordDns"]=>
+              array(2) {
+                [0]=>
+                object(stdClass)#14 (5) {
+                  ["host"]=>
+                  string(10) "domain.com"
+                  ["class"]=>
+                  string(2) "IN"
+                  ["ttl"]=>
+                  int(82358)
+                  ["type"]=>
+                  string(2) "NS"
+                  ["target"]=>
+                  string(22) "ns.domain.com"
+                }
+              }
+              ["recordWeb"]=>
+              array(1) {
+                [0]=>
+                object(stdClass)#16 (5) {
+                  ["host"]=>
+                  string(10) "domain.com"
+                  ["class"]=>
+                  string(2) "IN"
+                  ["ttl"]=>
+                  int(300)
+                  ["type"]=>
+                  string(1) "A"
+                  ["ip"]=>
+                  string(13) "192.168.0.1"
+                }
+              }
+              ["recordMx"]=>
+              array(5) {
+                [0]=>
+                object(stdClass)#17 (6) {
+                  ["host"]=>
+                  string(10) "domain.com"
+                  ["class"]=>
+                  string(2) "IN"
+                  ["ttl"]=>
+                  int(300)
+                  ["type"]=>
+                  string(2) "MX"
+                  ["pri"]=>
+                  int(10)
+                  ["target"]=>
+                  string(23) "mx.domain"
+                }
+              }
+            }
+            ["mailboxVerification"]=>
+            array(1) {
+              [0]=>
+              object(stdClass)#22 (2) {
+                ["result"]=>
+                string(4) "Good"
+                ["reason"]=>
+                string(11) "ValidFormat"
+              }
+            }
+          }
+          ["infrastructure"]=>
+          object(stdClass)#23 (1) {
+            ["mail"]=>
+            array(1) {
+              [0]=>
+              NULL
+            }
+          }
+          ["sendAssess"]=>
+          object(stdClass)#24 (3) {
+            ["inboxQualityScore"]=>
+            int(100)
+            ["sendRecommendation"]=>
+            string(3) "Yes"
+            ["sendStatus"]=>
+            string(70) "200%200.0.0%20No%20connections%20was%20made"
+          }
+          ["spamAssess"]=>
+          object(stdClass)#25 (10) {
+            ["isDisposable"]=>
+            bool(false)
+            ["isGibberish"]=>
+            bool(false)
+            ["isBank"]=>
+            bool(false)
+            ["isFree"]=>
+            bool(false)
+            ["isName"]=>
+            bool(false)
+            ["isRole"]=>
+            bool(false)
+            ["isTrap"]=>
+            bool(false)
+            ["isKnowError"]=>
+            bool(false)
+            ["isTypingError"]=>
+            bool(false)
+            ["isCatchAll"]=>
+            bool(false)
+          }
+          ["social"]=>
+          array(1) {
+            [0]=>
+            NULL
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
-#### large-brief
-Makes the opening paragraph large.
+Exemplos de Uso
+------------
+Para utilizar a chamada de API é preciso apenas efetuar uma requisição `https`. Toda linguagem de programação que permite uma requisição `https` pode ser utilizada.
+Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final, tendo atenção na na regra básica para os parâmetros necessários que são `email` e  `iPORTO_Api_ChavePublica`
 
-``` html
-<body class='large-brief'>
+```
+@endpoint = 
+https://api-v2.iporto.com.br/api-v2
+/get
+/email/xx@domain.com
+/iPORTO_Api_ChavePublica/xx
 ```
 
-### Adding more markup
+### Curl
+```
+curl @endpoint
+```
 
-You have full control over the HTML file, just add markup wherever you see fit.
-As long as you leave `role='flatdoc-content'` and `role='flatdoc-menu'` empty as
-they are, you'll be fine.
+### Php
+```
+<?php
+$get_json = file_get_contents(@endpoint);
+```
 
-Here are some ideas to get you started.
-
- * Add a CSS file to make your own CSS adjustments.
- * Add a 'Tweet' button on top.
- * Add Google Analytics.
- * Use CSS to style the IDs in menus (`#acknowledgements + p`).
-
-### JavaScript hooks
-
-Flatdoc emits the events `flatdoc:loading` and `flatdoc:ready` to help you make
-custom behavior when the document loads.
-
-``` js
-$(document).on('flatdoc:ready', function() {
-  // I don't like this section to appear
-  $("#acknowledgements").remove();
+### Javascript com jQuery
+```
+<script type="text/javascript">
+$.getJSON(@endpoint, function(data) {
+  get_json = data;
 });
 ```
 
-Full customization
-------------------
+### Ruby
+```
+require "open-uri"
+get_json = open(@endpoint).read
+```
 
-You don't have to be restricted to the given theme. Flatdoc is just really one
-`.js` file that expects 2 HTML elements (for *menu* and *content*). Start with
-the blank template and customize as you see fit.
-
-[Get blank template >][template]
-
-Misc
-====
-
-Inspirations
-------------
-
-The following projects have inspired Flatdoc.
-
- * [Backbone.js] - Jeremy's projects have always adopted this "one page
- documentation" approach which I really love.
-
- * [Docco] - Jeremy's Docco introduced me to the world of literate programming,
- and side-by-side documentation in general.
-
- * [Stripe] - Flatdoc took inspiration on the look of their API documentation.
-
- * [DocumentUp] - This service has the same idea but does a hosted readme 
- parsing approach.
-
-Attributions
-------------
-
-[Photo](http://www.flickr.com/photos/doug88888/2953428679/) taken from Flickr,
-licensed under Creative Commons.
-
-Acknowledgements
-----------------
-
-Â© 2013, 2014, Rico Sta. Cruz. Released under the [MIT 
-License](http://www.opensource.org/licenses/mit-license.php).
-
-**Flatdoc** is authored and maintained by [Rico Sta. Cruz][rsc] with help from its 
-[contributors][c].
-
- * [My website](http://ricostacruz.com) (ricostacruz.com)
- * [Github](http://github.com/rstacruz) (@rstacruz)
- * [Twitter](http://twitter.com/rstacruz) (@rstacruz)
-
-[rsc]: http://ricostacruz.com
-[c]:   http://github.com/rstacruz/flatdoc/contributors
-
-[GitHub API]: http://github.com/api
-[marked]: https://github.com/chjj/marked
-[Backbone.js]: http://backbonejs.org
-[dox]: https://github.com/visionmedia/dox
-[Stripe]: https://stripe.com/docs/api
-[Docco]: http://jashkenas.github.com/docco
-[GitHub pages]: https://pages.github.com
-[fences]:https://help.github.com/articles/github-flavored-markdown#syntax-highlighting
-[DocumentUp]: http://documentup.com
-
-[project]: https://github.com/rstacruz/flatdoc
-[template]: https://github.com/rstacruz/flatdoc/raw/gh-pages/templates/template.html
-[blank]: https://github.com/rstacruz/flatdoc/raw/gh-pages/templates/blank.html
-[dist]: https://github.com/rstacruz/flatdoc/tree/gh-pages/v/0.9.0
+### Asp Clássico
+```
+<%
+Set xmlHttp = Server.Createobject("MSXML2.ServerXMLHTTP.6.0") 
+xmlHttp.Open "GET", @endpoint, False 
+xmlHttp.Send 
+_RESTfulResponse = xmlHttp.responseText 
+xmlHttp.abort() 
+set xmlHttp = Nothing 
+get_json = _RESTfulResponse 
+```
 
