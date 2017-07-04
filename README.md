@@ -3,16 +3,20 @@ VALIDADOR DE E-MAIL
 
 API
 ---------------
-O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a API iPORTO, para Validador de E-mail, descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
+O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a API iPORTO, para Validador de E-mail, 
+descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
-O mecanismo de integração com o Validador de E-mail é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Validador de E-mail com sucesso.
+O mecanismo de integração com o Validador de E-mail é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
+requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Validador de E-mail com sucesso.
 
-Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API iPORTO, para Validador de E-mail. Estas operações devem ser executadas utilizando sua chave de API (iPORTO_Api_ChavePublica).
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API iPORTO, para Validador de E-mail. 
+Estas operações devem ser executadas utilizando sua chave de API (iPORTO_Api_ChavePublica).
 
 *Current version: [v2.0.0][stable]*
 
 ### Suporte
-Após a leitura deste manual, caso ainda persistam dúvidas, a iPORTO disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, via Chamado Técnico em sua Central do Cliente:
+Após a leitura deste manual, caso ainda persistam dúvidas, a iPORTO disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, 
+via Chamado Técnico em sua Central do Cliente:
 * [Central do Cliente](https://painel.iporto.com.br)
 
 ### Uso
@@ -31,14 +35,12 @@ Toda requisição tem como base:
  `https://api-v2.iporto.com.br/api-v2/`
 
 ### Requisição
-Cada requisição, para Validador de E-mail, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. Todas as requisições devem ser feitas via `https`.
+Cada requisição, para Validador de E-mail, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
+Todas as requisições devem ser feitas via `https`.
 
 * Exemplo de requisição:
 ```curl
-https://api-v2.iporto.com.br/api-v2
-/get
-/email/xx@domain.com
-/iPORTO_Api_ChavePublica/xx
+curl https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx
 ```
 
 ### Resposta
