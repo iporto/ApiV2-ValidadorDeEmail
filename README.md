@@ -1,9 +1,11 @@
+![iPORTO](https://iporto.com.br/images/logos/64x64.png)
+
 VALIDADOR DE E-MAIL
 =======
 
-API
----------------
-O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a API iPORTO, para Validador de E-mail, 
+# API
+
+O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de E-mail**, 
 descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
 O mecanismo de integração com o Validador de E-mail é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
@@ -14,27 +16,59 @@ Estas operações devem ser executadas utilizando sua chave de API (iPORTO_Api_C
 
 *Current version: [v2.0.0][stable]*
 
-### Suporte
-Após a leitura deste manual, caso ainda persistam dúvidas, a iPORTO disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, 
+## Recursos
+
+    * Validação/Verificação de E-mail.
+    * Validação de E-mail: Sintaxe.
+    * Validação de E-mail: Domínios descartáveis.
+    * Validação de E-mail: Usuários com digitação randômica.
+    * Validação de E-mail: Domínios de instituições financeiras.
+    * Validação de E-mail: Domínios de instituições governamentais.
+    * Validação de E-mail: Domínios de uso gratuito.
+    * Validação de E-mail: Usuários como Nome direto.
+    * Validação de E-mail: Usuários de regra.
+    * Validação de E-mail: Usuários como Trap ou Armadílhas.
+    * Validação de E-mail: Usuários e Domínios conhecidos como Bounces ou Erros.
+    * Validação de E-mail: Domínios como Typing Error.
+    * Validação de E-mail: Domínios com contas Pega Tudo.
+    * Validação de E-mail: Did You Mean ou seja, "Você quis dizer" para sugestões de digitação.
+    * Validação de E-mail: MX.
+    * Validação de E-mail: DNS.
+    * Validação de E-mail: WEB.
+    * Validação de E-mail: Análise de SPAM.
+    * Validação de E-mail: Análise de Entregabilidade.
+    * Validação de E-mail: Análise de Redes Sociais.
+
+## Suporte
+Após a leitura deste manual, caso ainda persistam dúvidas, a **iPORTO** disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, 
 via Chamado Técnico em sua Central do Cliente:
 * [Central do Cliente](https://painel.iporto.com.br)
 
-### Uso
-Para utilização da API é preciso possuir um cadastro ativo na iPORTO. Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
+## Uso
+Para utilização da API é preciso possuir um cadastro ativo na **iPORTO**. 
+Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
 * [Planos para Validador de E-mail](https://iporto.com.br/validador-de-email)
 
-Começar a usar
----------------
-Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere uma nova Chave de API. É preciso possuir uma Chave de API válida, um cadastro ativo e plano contratado.
+## Glossário
 
-### Limites
-Cada Chave de API permite o limite de até 5.000 requisições ao dia. Para um uso maior, é preciso solicitar liberação através da Central de Atendimento, que pode ser verificado na guia Suporte desta documentação.
+    * Chave de API: Indica uma Chave única que deve ser gerada via Central do Cliente para uso da API e requisições.
+    * Email: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
+    * Central do Cliente: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
 
-### EndPoint
+# Começar a usar
+
+Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere uma nova **Chave de API**. 
+É preciso possuir uma Chave de API válida, um cadastro ativo e plano contratado.
+
+## Limites
+Cada **Chave de API** permite o limite de até 5.000 requisições ao dia. 
+Para um uso maior, é preciso solicitar liberação através da Central do Cliente, que pode ser verificado na guia Suporte desta documentação.
+
+## EndPoint
 Toda requisição tem como base:
  `https://api-v2.iporto.com.br/api-v2/`
 
-### Requisição
+## Requisição
 Cada requisição, para Validador de E-mail, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
 Todas as requisições devem ser feitas via `https`.
 
@@ -43,22 +77,23 @@ Todas as requisições devem ser feitas via `https`.
 curl https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx
 ```
 
-### Resposta
+## Resposta
 Toda resposta da API utiliza padrão `REST`, neste caso, `RESTful JSON`.
 * [Definição de REST via Wikipedia](https://pt.wikipedia.org/wiki/REST)
 * [Especificações JSON para API](http://jsonapi.org/)
 
-Estrutura do Uso
-------------
+
+# Estrutura do Uso
+
 | Propriedade | Descrição
-|--|--|
+| ---: | :--- |
 | `string` **iPORTO_Api_ChavePublica** | `Obrigatório`. Chave de API que será utilizada para autorizar a requisição.
 |                   `string` **email** | `Obrigatório`. E-mail que será validado.
 
-Estrutura da Resposta
-------------
+# Estrutura da Resposta
+
 | Propriedade | Descrição |
-|--|--|
+| ---: | :--- |
 |   jsonapi | Versão atual da API.
 |      meta | Dados sobre a API.
 |     links | Links utilizados para a requisição.
@@ -70,7 +105,7 @@ Disposição de atributos retornados para cada requisição.
 
 #### meta
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :---: | :--- |
 | meta  | | |
 |  `{}` | `string` email 		| E-mail que foi utilizado para validação.
 |  `{}` | `string` domain 		| Domínio do E-mail que foi utilizado para validação.
