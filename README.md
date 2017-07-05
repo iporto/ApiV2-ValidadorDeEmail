@@ -11,7 +11,7 @@ requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários
 Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de Email**. 
 Estas operações devem ser executadas utilizando sua **Chave de API**.
 
-*Current version: [v2.0.0][stable]*
+Não é preciso efetuar instalações adicionais para uso da **API iPORTO**.
 
 ## Recursos
 
@@ -85,8 +85,8 @@ Toda resposta da `API` utiliza padrão `REST`, neste caso, `RESTful JSON`.
 
 # Estrutura do Uso
 
-A estrutura de Uso tem como base `Request` e `Response`. `Request` indica o envio de dados para a `API` da **iPORTO** e `Response` indica a resposta com os dados 
-formatados.
+A estrutura de uso tem como base `Request` e `Response`. 
+`Request` indica o envio de dados para a `API` da **iPORTO** e `Response` indica a resposta com os dados formatados.
 
 ## Estrutura do `Request`
 | Propriedade | Descrição
@@ -192,7 +192,7 @@ Disposição de atributos retornados para cada `Request`.
 
 
 ### Exemplo de `Response` Json
-```
+```json
 object(stdClass)#1 (7) {
   ["status"]=>
   int(200)
@@ -527,4 +527,6 @@ get_json = _RESTfulResponse
 ```
 
 # Contrato
+@iPORTO.COM - suporte[]iporto.com
+
 * [Contrado de API](https://iporto.com.br/contratos/api.pdf)
