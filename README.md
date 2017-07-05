@@ -1,6 +1,7 @@
 # iPORTO: Validador de Email
 <a href="https://iporto.com.br/validador-de-email"><img src="https://iporto.com.br/images/logos/64x64.png" align="left" hspace="10" vspace="6"></a>
-**iPORTO** (or **D3.js**) É uma empresa especialista em ferramentas para Marketing Online para pequenas e médias empresas.
+**iPORTO**, É uma empresa especialista em ferramentas para Marketing Online para pequenas e médias empresas. SMTP, E-mail Marketing, Validador de Email e ferramentas relacionadas 
+para gerenciamento de *leads* e *oportunidades*.
 
 
 # Introdução a iPORTO e sua API
