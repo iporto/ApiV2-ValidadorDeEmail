@@ -54,6 +54,7 @@ Um pacote de uso deve ser selecionado diretamente na página de planos disponív
  * **Central do Cliente**: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
  * **Chave de API**: Indica uma Chave única que deve ser gerada via **Central do Cliente**.
  * **Email**: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
+ * **@todo**: Itens que serão disponibilizados no futuro mas que ainda não foram testados para uso final.
 
 # Começar a usar
 
@@ -107,7 +108,7 @@ Disposição de atributos retornados para cada `Request`.
 
 #### {meta}
 | Array | Propriedade | Descrição |
-| :---: | :--- | :--- |
+| :---: | ---: | :--- |
 | meta  | | |
 |  `{}` | `string` email 		| Email que foi utilizado para validação.
 |  `{}` | `string` domain 		| Domínio do Email que foi utilizado para validação.
@@ -115,10 +116,11 @@ Disposição de atributos retornados para cada `Request`.
 |  `{}` | `string` subDomain 	| Subdomínio do Domínio do Email que foi utilizado para validação.
 |  `{}` | `string` user 		| Usuário de Email.
 |  `{}` | `string` emailMd5 	| Validação MD5 do Email que foi utilizado para validação.
+|  `{}` | `string` emailSoundex | Validação SOUNDEX do Email que foi utilizado para validação. `@todo`
 
 #### {diagnostic}
 | Array | Propriedade | Descrição |
-| :---: | :--- | :--- |
+| :---: | ---: | :--- |
 | diagnostic  | | |
 |  `{}` | `string` key 	| Chave que identifica a requisição.
 |  `{}` | `string` dts 	| Data, Hora, Minuto e Segundo em que a requisição foi iniciada.
@@ -127,31 +129,31 @@ Disposição de atributos retornados para cada `Request`.
 
 #### {disposition}
 | Array | Propriedade | Descrição |
-| :---: | :--- | :--- |
+| :---: | ---: | :--- |
 | disposition  | | |
 |  `{}` | `boolean` isValid 		| Informação de que um Email é realmente válido.
 |  `{}` | `boolean` isValidFormat 	| Informação de que a sintax de um Email é válido.
 |  `{}` | `boolean` isDisposable 	| Informação de que um Email utiliza serviços de Emails temporário e são descartáveis.
 |  `{}` | `boolean` isGibberish 	| Informação de que um Email é do tipo Gibberish ou apenas um Email com digitação randômica.
 |  `{}` | `boolean` isBank 			| Informação de que o Email é de uma instituição Bancária.
-|  `{}` | `boolean` isGov 			| Informação de que o Email é de uma instituição Governamental.
+|  `{}` | `boolean` isGov 			| Informação de que o Email é de uma instituição Governamental. `@todo`
 |  `{}` | `boolean` isFree 			| Informação de que o Email é gratuito.
 |  `{}` | `boolean` isName 			| Informação de que o Usuário do Email é um Nome Próprio.
 |  `{}` | `boolean` isRole 			| Informação de que o Email é do tipo Regra de entraga.
 |  `{}` | `boolean` isTrap 			| Informação de que o Email é uma armadilha para capturar Spam.
 |  `{}` | `boolean` isKnowError 	| Informação de que o Domínio é conhecido como diversos erros de envio.
 |  `{}` | `boolean` isTypingError 	| Informação de que o Email ou o Domínio é um erro de digitação.
-|  `{}` | `boolean` isCatchAll 		| Informação de que o Domínio aceita qualquer tipo de Email, inválido ou não.
+|  `{}` | `boolean` isCatchAll 		| Informação de que o Domínio aceita qualquer tipo de Email, inválido ou não. `@todo`
 
 #### {didYouMean}
 | Array | Propriedade | Descrição |
-| :---: | :--- | :--- |
+| :---: | ---: | :--- |
 | didYouMean  | | |
-|  `{}` | `array` didYouMean | `array` com sugestões de digitação.
+|  `{}` | `array` didYouMean | `array` com sugestões de digitação. `@todo`
 
 #### {emailVerification}
 | Array | Array | Propriedade | Descrição |
-| :---: | :--- | :--- | :--- |
+| :---: | :--- | ---: | :--- |
 | emailVerification | | | |
 |  `{}` | `syntaxVerification` 	| `boolean` isSyntaxValid 			| Informação de que Email possui sintaxe válida.
 |  `{}` | `dnsVerification` 	| `boolean` isDomainHasDnsRecord 	| Informação de que Domínio possui entrada de DNS.
@@ -164,13 +166,13 @@ Disposição de atributos retornados para cada `Request`.
 
 #### {infrastructure}
 | Array | Array | Propriedade | Descrição |
-| :---: | :--- | :--- | :--- |
+| :---: | :--- | ---: | :--- |
 | infrastructure  | | | |
-|  `{}` | `mail` | `string` isSyntaxValid | Informação com estrutura de Email utilizada pelo Domínio.
+|  `{}` | `mail` | `string` isSyntaxValid | Informação com estrutura de Email utilizada pelo Domínio. `@todo`
 
 #### {sendAssess}
 | Array | Propriedade | Descrição |
-| :---: | :--- | :--- |
+| :---: | ---: | :--- |
 | sendAssess  | | |
 |  `{}` | `int` inboxQualityScore 		| Verificação de qualidade para Mensagens sejam entregues na Caixa de Entrada dos Usuários.
 |  `{}` | `string` sendRecommendation 	| Recomendação de que, se, um Email deve ser enviado ou não.
@@ -186,7 +188,7 @@ Disposição de atributos retornados para cada `Request`.
 | Array | Propriedade | Descrição |
 | :---: | :--- | :--- |
 | social  | | |
-|  `{}` | `array` | Análise com avatar e link para Rede Social do Usuário.
+|  `{}` | `array` | Análise com avatar e link para Rede Social do Usuário. `@todo`
 
 
 ### Exemplo de `Response` Json
@@ -480,6 +482,10 @@ Toda linguagem de programação que permite uma requisição `HTTPS` pode ser ut
 Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final, 
 tendo atenção a regra básica para os parâmetros necessários que são `@email` e  `@iPORTO_Api_ChavePublica`
 
+ * [Gerar Chave de API iPORTO](http://painel.iporto.com.br/painel/api)
+ * [Contratar Plano Validador de Email](https://iporto.com.br/validador-de-email)
+
+
 ```
 @endpoint = "https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx";
 ```
@@ -496,8 +502,7 @@ $get_json = file_get_contents(@endpoint);
 ```
 
 ### Javascript com jQuery
-``` avascript
-<script type="text/javascript">
+```javascript
 $.getJSON(@endpoint, function(data) {
   get_json = data;
 });
@@ -521,3 +526,5 @@ set xmlHttp = Nothing
 get_json = _RESTfulResponse 
 ```
 
+# Contrato
+* [Contrado de API](https://iporto.com.br/contratos/api.pdf)
