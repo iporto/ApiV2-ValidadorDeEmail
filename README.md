@@ -2,39 +2,39 @@
 
 # Introdução a iPORTO e sua API
 
-O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de E-mail**, 
+O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de Email**, 
 descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
-O mecanismo de integração com o **Validador de E-mail** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
-requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários para implantar a solução **Validador de E-mail** com sucesso.
+O mecanismo de integração com o **Validador de Email** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
+requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários para implantar a solução **Validador de Email** com sucesso.
 
-Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de E-mail**. 
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de Email**. 
 Estas operações devem ser executadas utilizando sua **Chave de API**.
 
 *Current version: [v2.0.0][stable]*
 
 ## Recursos
 
- * Validação/Verificação de E-mail.
- * Validação de E-mail: Sintaxe.
- * Validação de E-mail: Domínios descartáveis.
- * Validação de E-mail: Usuários com digitação randômica.
- * Validação de E-mail: Domínios de instituições financeiras.
- * Validação de E-mail: Domínios de instituições governamentais.
- * Validação de E-mail: Domínios de uso gratuito.
- * Validação de E-mail: Usuários como Nome direto.
- * Validação de E-mail: Usuários de regra.
- * Validação de E-mail: Usuários como Trap ou Armadílhas.
- * Validação de E-mail: Usuários e Domínios conhecidos como Bounces ou Erros.
- * Validação de E-mail: Domínios como Typing Error.
- * Validação de E-mail: Domínios com contas Pega Tudo.
- * Validação de E-mail: Did You Mean ou seja, "Você quis dizer" para sugestões de digitação.
- * Validação de E-mail: MX.
- * Validação de E-mail: DNS.
- * Validação de E-mail: WEB.
- * Validação de E-mail: Análise de SPAM.
- * Validação de E-mail: Análise de Entregabilidade.
- * Validação de E-mail: Análise de Redes Sociais.
+ * Validação/Verificação de Email.
+ * Validação de Email: Sintaxe.
+ * Validação de Email: Domínios descartáveis.
+ * Validação de Email: Usuários com digitação randômica.
+ * Validação de Email: Domínios de instituições financeiras.
+ * Validação de Email: Domínios de instituições governamentais.
+ * Validação de Email: Domínios de uso gratuito.
+ * Validação de Email: Usuários como Nome direto.
+ * Validação de Email: Usuários de regra.
+ * Validação de Email: Usuários como Trap ou Armadílhas.
+ * Validação de Email: Usuários e Domínios conhecidos como Bounces ou Erros.
+ * Validação de Email: Domínios como Typing Error.
+ * Validação de Email: Domínios com contas Pega Tudo.
+ * Validação de Email: Did You Mean ou seja, "Você quis dizer" para sugestões de digitação.
+ * Validação de Email: MX.
+ * Validação de Email: DNS.
+ * Validação de Email: WEB.
+ * Validação de Email: Análise de SPAM.
+ * Validação de Email: Análise de Entregabilidade.
+ * Validação de Email: Análise de Redes Sociais.
 
 ## Suporte
 
@@ -46,11 +46,11 @@ via Chamado Técnico em sua Central do Cliente:
 
 Para utilização da API é preciso possuir um cadastro ativo na **iPORTO**. 
 Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
- * [Planos para Validador de E-mail](https://iporto.com.br/validador-de-email)
+ * [Planos para Validador de Email](https://iporto.com.br/validador-de-email)
 
 ## Glossário
 
- * **iPORTO**: Empresa que provê solução para **Validador de E-mail**.
+ * **iPORTO**: Empresa que provê solução para **Validador de Email**.
  * **Central do Cliente**: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
  * **Chave de API**: Indica uma Chave única que deve ser gerada via **Central do Cliente**.
  * **Email**: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
@@ -69,7 +69,7 @@ Toda requisição tem como base:
  `https://api-v2.iporto.com.br/api-v2/`
 
 ## Requisição
-Cada requisição, para **Validador de E-mail**, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
+Cada requisição, para **Validador de Email**, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
 Todas as requisições devem ser feitas via `https`.
 
 * Exemplo de requisição:
@@ -84,7 +84,8 @@ Toda resposta da `API` utiliza padrão `REST`, neste caso, `RESTful JSON`.
 
 # Estrutura do Uso
 
-A estrutura de Uso tem como base `Request` e `Response`.
+A estrutura de Uso tem como base `Request` e `Response`. `Request` indica o envio de dados para a `API` da **iPORTO** e `Response` indica a resposta com os dados 
+formatados.
 
 ## Estrutura do `Request`
 | Propriedade | Descrição
@@ -95,100 +96,100 @@ A estrutura de Uso tem como base `Request` e `Response`.
 ## Estrutura da `Response`
 | Propriedade | Descrição |
 | ---: | :--- |
-|   jsonapi | Versão atual da API.
-|      meta | Dados sobre a API.
-|     links | Links utilizados para a requisição.
-|  messages | Mensagens sobre a requisição.
-|      data | Itens retornados sobre a requisição. 
+|   `string` jsonapi | Versão atual da API.
+|       `array` meta | Dados sobre a API.
+|      `array` links | Links utilizados para `Request`.
+|   `array` messages | Mensagens sobre `Request`.
+|       `array` data | Itens retornados sobre `Request`. 
 
 ### Attributes
-Disposição de atributos retornados para cada requisição.
+Disposição de atributos retornados para cada `Request`.
 
-#### meta
+#### {meta}
 | Array | Propriedade | Descrição |
 | :---: | :--- | :--- |
 | meta  | | |
-|  `{}` | `string` email 		| E-mail que foi utilizado para validação.
-|  `{}` | `string` domain 		| Domínio do E-mail que foi utilizado para validação.
-|  `{}` | `string` tld 			| TLD do Domínio do E-mail que foi utilizado para validação.
-|  `{}` | `string` subDomain 	| Subdomínio do Domínio do E-mail que foi utilizado para validação.
-|  `{}` | `string` user 		| Usuário de E-mail.
-|  `{}` | `string` emailMd5 	| Validação MD5 do E-mail que foi utilizado para validação.
+|  `{}` | `string` email 		| Email que foi utilizado para validação.
+|  `{}` | `string` domain 		| Domínio do Email que foi utilizado para validação.
+|  `{}` | `string` tld 			| TLD do Domínio do Email que foi utilizado para validação.
+|  `{}` | `string` subDomain 	| Subdomínio do Domínio do Email que foi utilizado para validação.
+|  `{}` | `string` user 		| Usuário de Email.
+|  `{}` | `string` emailMd5 	| Validação MD5 do Email que foi utilizado para validação.
 
-#### diagnostic
+#### {diagnostic}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | diagnostic  | | |
 |  `{}` | `string` key 	| Chave que identifica a requisição.
 |  `{}` | `string` dts 	| Data, Hora, Minuto e Segundo em que a requisição foi iniciada.
 |  `{}` | `string` dte 	| Data, Hora, Minuto e Segundo em que a requisição foi finalizada.
 |  `{}` | `array` dtl 	| Histórico com Data, Hora, Minuto e Segundo de cada requisição principal.
 
-#### disposition
+#### {disposition}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | disposition  | | |
-|  `{}` | `boolean` isValid 		| Informação de que um E-mail é realmente válido.
-|  `{}` | `boolean` isValidFormat 	| Informação de que a sintax de um E-mail é válido.
-|  `{}` | `boolean` isDisposable 	| Informação de que um E-mail utiliza serviços de E-mails temporário e são descartáveis.
-|  `{}` | `boolean` isGibberish 	| Informação de que um E-mail é do tipo Gibberish ou apenas um E-mail com digitação randômica.
-|  `{}` | `boolean` isBank 			| Informação de que o E-mail é de uma instituição Bancária.
-|  `{}` | `boolean` isGov 			| Informação de que o E-mail é de uma instituição Governamental.
-|  `{}` | `boolean` isFree 			| Informação de que o E-mail é gratuito.
-|  `{}` | `boolean` isName 			| Informação de que o Usuário do E-mail é um Nome Próprio.
-|  `{}` | `boolean` isRole 			| Informação de que o E-mail é do tipo Regra de entraga.
-|  `{}` | `boolean` isTrap 			| Informação de que o E-mail é uma armadilha para capturar Spam.
+|  `{}` | `boolean` isValid 		| Informação de que um Email é realmente válido.
+|  `{}` | `boolean` isValidFormat 	| Informação de que a sintax de um Email é válido.
+|  `{}` | `boolean` isDisposable 	| Informação de que um Email utiliza serviços de Emails temporário e são descartáveis.
+|  `{}` | `boolean` isGibberish 	| Informação de que um Email é do tipo Gibberish ou apenas um Email com digitação randômica.
+|  `{}` | `boolean` isBank 			| Informação de que o Email é de uma instituição Bancária.
+|  `{}` | `boolean` isGov 			| Informação de que o Email é de uma instituição Governamental.
+|  `{}` | `boolean` isFree 			| Informação de que o Email é gratuito.
+|  `{}` | `boolean` isName 			| Informação de que o Usuário do Email é um Nome Próprio.
+|  `{}` | `boolean` isRole 			| Informação de que o Email é do tipo Regra de entraga.
+|  `{}` | `boolean` isTrap 			| Informação de que o Email é uma armadilha para capturar Spam.
 |  `{}` | `boolean` isKnowError 	| Informação de que o Domínio é conhecido como diversos erros de envio.
-|  `{}` | `boolean` isTypingError 	| Informação de que o E-mail ou o Domínio é um erro de digitação.
-|  `{}` | `boolean` isCatchAll 		| Informação de que o Domínio aceita qualquer tipo de E-mail, inválido ou não.
+|  `{}` | `boolean` isTypingError 	| Informação de que o Email ou o Domínio é um erro de digitação.
+|  `{}` | `boolean` isCatchAll 		| Informação de que o Domínio aceita qualquer tipo de Email, inválido ou não.
 
-#### didYouMean
+#### {didYouMean}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | didYouMean  | | |
-|  `{}` | `array` didYouMean | x
+|  `{}` | `array` didYouMean | `array` com sugestões de digitação.
 
-#### emailVerification
+#### {emailVerification}
 | Array | Array | Propriedade | Descrição |
-|--|--|--|--|
+| :---: | :--- | :--- | :--- |
 | emailVerification | | | |
-|  `{}` | `syntaxVerification` 	| `boolean` isSyntaxValid 			| x
-|  `{}` | `dnsVerification` 	| `boolean` isDomainHasDnsRecord 	| x
-|  `{}` | `dnsVerification` 	| `boolean` isDomainHasWebRecord 	| x
-|  `{}` | `dnsVerification` 	| `boolean` isDomainHasMxRecords 	| x
-|  `{}` | `dnsVerification` 	| `array` recordDns 				| x
-|  `{}` | `dnsVerification` 	| `array` recordWeb 				| x
-|  `{}` | `dnsVerification` 	| `array` recordMx 					| x
-|  `{}` | `mailboxVerification` | `array` 							| x
+|  `{}` | `syntaxVerification` 	| `boolean` isSyntaxValid 			| Informação de que Email possui sintaxe válida.
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasDnsRecord 	| Informação de que Domínio possui entrada de DNS.
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasWebRecord 	| Informação de que Domínio possui entrada de DNS A/WEB.
+|  `{}` | `dnsVerification` 	| `boolean` isDomainHasMxRecords 	| Informação de que Domínio possui entrada de DNS para Emails/MX.
+|  `{}` | `dnsVerification` 	| `array` recordDns 				| Entradas de DNS para Domínio.
+|  `{}` | `dnsVerification` 	| `array` recordWeb 				| Entradas de DNS para Domínios no âmbito Web.
+|  `{}` | `dnsVerification` 	| `array` recordMx 					| Entradas de DNS para Domínios no âmbito de Emails. 
+|  `{}` | `mailboxVerification` | `array` 							| Verificações de Email com análise Holística.
 
-#### infrastructure
+#### {infrastructure}
 | Array | Array | Propriedade | Descrição |
-|--|--|--|--|
+| :---: | :--- | :--- | :--- |
 | infrastructure  | | | |
-|  `{}` | `mail` | `string` isSyntaxValid | x
+|  `{}` | `mail` | `string` isSyntaxValid | Informação com estrutura de Email utilizada pelo Domínio.
 
-#### sendAssess
+#### {sendAssess}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | sendAssess  | | |
-|  `{}` | `int` inboxQualityScore 		| x
-|  `{}` | `string` sendRecommendation 	| x
-|  `{}` | `string` sendStatus 			| x
+|  `{}` | `int` inboxQualityScore 		| Verificação de qualidade para Mensagens sejam entregues na Caixa de Entrada dos Usuários.
+|  `{}` | `string` sendRecommendation 	| Recomendação de que, se, um Email deve ser enviado ou não.
+|  `{}` | `string` sendStatus 			| Status da última tentativa de envio para o Usário.
 
-#### spamAssess
+#### {spamAssess}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | spamAssess  | | |
-|  `{}` | `array` | x
+|  `{}` | `array` | Análises, em resumo, para a chave `disposition`.
 
-#### social
+#### {social}
 | Array | Propriedade | Descrição |
-|--|--|--|
+| :---: | :--- | :--- |
 | social  | | |
-|  `{}` | `array` | x
+|  `{}` | `array` | Análise com avatar e link para Rede Social do Usuário.
 
 
-### Json
+### Exemplo de `Response` Json
 ```
 object(stdClass)#1 (7) {
   ["status"]=>
@@ -472,32 +473,30 @@ object(stdClass)#1 (7) {
 }
 ```
 
-Exemplos de Uso
-------------
-Para utilizar a chamada de API é preciso apenas efetuar uma requisição `https`. Toda linguagem de programação que permite uma requisição `https` pode ser utilizada.
-Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final, tendo atenção na na regra básica para os parâmetros necessários que são `email` e  `iPORTO_Api_ChavePublica`
+# Exemplos de Uso
+
+Para utilizar a chamada de `API` é preciso apenas efetuar uma requisição `HTTPS`. 
+Toda linguagem de programação que permite uma requisição `HTTPS` pode ser utilizada.
+Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final, 
+tendo atenção a regra básica para os parâmetros necessários que são `@email` e  `@iPORTO_Api_ChavePublica`
 
 ```
-@endpoint = 
-https://api-v2.iporto.com.br/api-v2
-/get
-/email/xx@domain.com
-/iPORTO_Api_ChavePublica/xx
+@endpoint = "https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx";
 ```
 
 ### Curl
-```
+```curl
 curl @endpoint
 ```
 
 ### Php
-```
+```php
 <?php
 $get_json = file_get_contents(@endpoint);
 ```
 
 ### Javascript com jQuery
-```
+``` avascript
 <script type="text/javascript">
 $.getJSON(@endpoint, function(data) {
   get_json = data;
@@ -505,13 +504,13 @@ $.getJSON(@endpoint, function(data) {
 ```
 
 ### Ruby
-```
+```ruby
 require "open-uri"
 get_json = open(@endpoint).read
 ```
 
 ### Asp Clássico
-```
+```asp
 <%
 Set xmlHttp = Server.Createobject("MSXML2.ServerXMLHTTP.6.0") 
 xmlHttp.Open "GET", @endpoint, False 
