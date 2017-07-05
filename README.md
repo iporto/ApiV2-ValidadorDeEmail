@@ -80,7 +80,7 @@ Todas as requisições devem ser feitas via `https`.
 
 * Exemplo de requisição:
 ```curl
-curl https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx
+curl https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx
 ```
 
 ## Resposta
@@ -492,7 +492,7 @@ tendo atenção a regra básica para os parâmetros necessários que são `@emai
 
 
 ```
-@endpoint = "https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx";
+@endpoint = "https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx";
 ```
 
 ### Curl
