@@ -8,7 +8,7 @@ descrevendo as funcionalidades, os métodos a serem utilizados, listando informa
 O mecanismo de integração com o **Validador de E-mail** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
 requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários para implantar a solução **Validador de E-mail** com sucesso.
 
-Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para V**Validador de E-mail**. 
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de E-mail**. 
 Estas operações devem ser executadas utilizando sua **Chave de API**.
 
 *Current version: [v2.0.0][stable]*
@@ -50,9 +50,10 @@ Um pacote de uso deve ser selecionado diretamente na página de planos disponív
 
 ## Glossário
 
-    * Chave de API: Indica uma Chave única que deve ser gerada via Central do Cliente para uso da API e requisições.
-    * Email: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
-    * Central do Cliente: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
+ * **iPORTO**: Empresa que provê solução para **Validador de E-mail**.
+ * **Central do Cliente**: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
+ * **Chave de API**: Indica uma Chave única que deve ser gerada via **Central do Cliente**.
+ * **Email**: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
 
 # Começar a usar
 
@@ -60,15 +61,15 @@ Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere 
 É preciso possuir uma Chave de API válida, um cadastro ativo e plano contratado.
 
 ## Limites
-Cada **Chave de API** permite o limite de até 5.000 requisições ao dia. 
-Para um uso maior, é preciso solicitar liberação através da Central do Cliente, que pode ser verificado na guia Suporte desta documentação.
+Cada **Chave de API** permite o limite de até `5.000` requisições ao dia. 
+Para um uso maior, é preciso solicitar liberação através da **Central do Cliente**, que pode ser verificado na guia **Suporte**, desta documentação.
 
 ## EndPoint
 Toda requisição tem como base:
  `https://api-v2.iporto.com.br/api-v2/`
 
 ## Requisição
-Cada requisição, para Validador de E-mail, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
+Cada requisição, para **Validador de E-mail**, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
 Todas as requisições devem ser feitas via `https`.
 
 * Exemplo de requisição:
@@ -77,20 +78,21 @@ curl https://api-v2.iporto.com.br/api-v2/get/email/xx@domain.com/iPORTO_Api_Chav
 ```
 
 ## Resposta
-Toda resposta da API utiliza padrão `REST`, neste caso, `RESTful JSON`.
+Toda resposta da `API` utiliza padrão `REST`, neste caso, `RESTful JSON`.
 * [Definição de REST via Wikipedia](https://pt.wikipedia.org/wiki/REST)
 * [Especificações JSON para API](http://jsonapi.org/)
 
-
 # Estrutura do Uso
 
+A estrutura de Uso tem como base `Request` e `Response`.
+
+## Estrutura do `Request`
 | Propriedade | Descrição
 | ---: | :--- |
-| `string` **iPORTO_Api_ChavePublica** | `Obrigatório`. Chave de API que será utilizada para autorizar a requisição.
-|                   `string` **email** | `Obrigatório`. E-mail que será validado.
+| `string` **iPORTO_Api_ChavePublica** | `Obrigatório`. **Chave de API** que será utilizada para autorizar a requisição.
+|                   `string` **email** | `Obrigatório`. **Email** que será validado.
 
-# Estrutura da Resposta
-
+## Estrutura da `Response`
 | Propriedade | Descrição |
 | ---: | :--- |
 |   jsonapi | Versão atual da API.
