@@ -1,53 +1,52 @@
 ![iPORTO](https://iporto.com.br/images/logos/64x64.png)
 
-VALIDADOR DE E-MAIL
-=======
-
-# API
+# Introdução a iPORTO e sua API
 
 O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de E-mail**, 
 descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
-O mecanismo de integração com o Validador de E-mail é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
-requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Validador de E-mail com sucesso.
+O mecanismo de integração com o **Validador de E-mail** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
+requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários para implantar a solução **Validador de E-mail** com sucesso.
 
-Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API iPORTO, para Validador de E-mail. 
-Estas operações devem ser executadas utilizando sua chave de API (iPORTO_Api_ChavePublica).
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para V**Validador de E-mail**. 
+Estas operações devem ser executadas utilizando sua **Chave de API**.
 
 *Current version: [v2.0.0][stable]*
 
 ## Recursos
 
-    * Validação/Verificação de E-mail.
-    * Validação de E-mail: Sintaxe.
-    * Validação de E-mail: Domínios descartáveis.
-    * Validação de E-mail: Usuários com digitação randômica.
-    * Validação de E-mail: Domínios de instituições financeiras.
-    * Validação de E-mail: Domínios de instituições governamentais.
-    * Validação de E-mail: Domínios de uso gratuito.
-    * Validação de E-mail: Usuários como Nome direto.
-    * Validação de E-mail: Usuários de regra.
-    * Validação de E-mail: Usuários como Trap ou Armadílhas.
-    * Validação de E-mail: Usuários e Domínios conhecidos como Bounces ou Erros.
-    * Validação de E-mail: Domínios como Typing Error.
-    * Validação de E-mail: Domínios com contas Pega Tudo.
-    * Validação de E-mail: Did You Mean ou seja, "Você quis dizer" para sugestões de digitação.
-    * Validação de E-mail: MX.
-    * Validação de E-mail: DNS.
-    * Validação de E-mail: WEB.
-    * Validação de E-mail: Análise de SPAM.
-    * Validação de E-mail: Análise de Entregabilidade.
-    * Validação de E-mail: Análise de Redes Sociais.
+ * Validação/Verificação de E-mail.
+ * Validação de E-mail: Sintaxe.
+ * Validação de E-mail: Domínios descartáveis.
+ * Validação de E-mail: Usuários com digitação randômica.
+ * Validação de E-mail: Domínios de instituições financeiras.
+ * Validação de E-mail: Domínios de instituições governamentais.
+ * Validação de E-mail: Domínios de uso gratuito.
+ * Validação de E-mail: Usuários como Nome direto.
+ * Validação de E-mail: Usuários de regra.
+ * Validação de E-mail: Usuários como Trap ou Armadílhas.
+ * Validação de E-mail: Usuários e Domínios conhecidos como Bounces ou Erros.
+ * Validação de E-mail: Domínios como Typing Error.
+ * Validação de E-mail: Domínios com contas Pega Tudo.
+ * Validação de E-mail: Did You Mean ou seja, "Você quis dizer" para sugestões de digitação.
+ * Validação de E-mail: MX.
+ * Validação de E-mail: DNS.
+ * Validação de E-mail: WEB.
+ * Validação de E-mail: Análise de SPAM.
+ * Validação de E-mail: Análise de Entregabilidade.
+ * Validação de E-mail: Análise de Redes Sociais.
 
 ## Suporte
+
 Após a leitura deste manual, caso ainda persistam dúvidas, a **iPORTO** disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, 
 via Chamado Técnico em sua Central do Cliente:
-* [Central do Cliente](https://painel.iporto.com.br)
+ * [Central do Cliente](https://painel.iporto.com.br)
 
 ## Uso
+
 Para utilização da API é preciso possuir um cadastro ativo na **iPORTO**. 
 Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
-* [Planos para Validador de E-mail](https://iporto.com.br/validador-de-email)
+ * [Planos para Validador de E-mail](https://iporto.com.br/validador-de-email)
 
 ## Glossário
 
@@ -105,7 +104,7 @@ Disposição de atributos retornados para cada requisição.
 
 #### meta
 | Array | Propriedade | Descrição |
-| :---: | :---: | :--- |
+| :---: | :--- | :--- |
 | meta  | | |
 |  `{}` | `string` email 		| E-mail que foi utilizado para validação.
 |  `{}` | `string` domain 		| Domínio do E-mail que foi utilizado para validação.
