@@ -1,19 +1,19 @@
 # iPORTO: Validador de Email
 <a href="https://iporto.com.br/validador-de-email"><img src="https://iporto.com.br/images/logos/64x64.png" align="left" hspace="10" vspace="6"></a>
-A **iPORTO**, É uma empresa especialista em ferramentas de Marketing Online, fundada em 2003, com foco em pequenas e médias empresas. 
-[SMTP](https://iporto.com.br/smtp-email-marketing), [E-Mail Marketing](https://iporto.com.br/email-marketing), [Validador de E-mail](https://iporto.com.br/validador-de-email) 
+A **iPORTO**, É uma empresa especialista em ferramentas de Marketing Online, fundada em 2003, com foco em pequenas e médias empresas.
+[SMTP](https://iporto.com.br/smtp-email-marketing), [E-Mail Marketing](https://iporto.com.br/email-marketing), [Validador de E-mail](https://iporto.com.br/validador-de-email)
 e ferramentas relacionadas para gerenciamento de *Leads* e *Oportunidades*. Sediada em Porto Alegre, RS. Estrutura própria de Servidores e Código.
 
 
 # Introdução a iPORTO e sua API
 
-O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de Email**, 
+O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a **API iPORTO** o plano **Validador de Email**,
 descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.
 
-O mecanismo de integração com o **Validador de Email** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, 
+O mecanismo de integração com o **Validador de Email** é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web,
 requisições `HTTP/HTTPS` e manipulação de arquivos `JSON`, são necessários para implantar a solução **Validador de Email** com sucesso.
 
-Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de Email**. 
+Nesse manual você encontrará a referência sobre todas as operações disponíveis na **API REST** da **API iPORTO**, para **Validador de Email**.
 Estas operações devem ser executadas utilizando sua **Chave de API**.
 
 Não é preciso efetuar instalações adicionais para uso da **API iPORTO**.
@@ -43,14 +43,15 @@ Não é preciso efetuar instalações adicionais para uso da **API iPORTO**.
 
 ## Suporte
 
-Após a leitura deste manual, caso ainda persistam dúvidas, a **iPORTO** disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial, 
+Após a leitura deste manual, caso ainda persistam dúvidas, a **iPORTO** disponibiliza um canal de suporte técnico de segunda a sexta-feira, em horário comercial,
 via Chamado Técnico em sua Central do Cliente:
  * [Central do Cliente](https://painel.iporto.com.br)
 
 ## Uso
 
-Para utilização da API é preciso possuir um cadastro ativo na **iPORTO**. 
+Para utilização da API é preciso possuir um cadastro ativo na **iPORTO**.
 Um pacote de uso deve ser selecionado diretamente na página de planos disponíveis no site.
+ * Planos do Tipo: Profissional e Avançado permitem o uso desta API.
  * [Planos para Validador de Email](https://iporto.com.br/validador-de-email)
 
 ## Glossário
@@ -59,15 +60,16 @@ Um pacote de uso deve ser selecionado diretamente na página de planos disponív
  * **Central do Cliente**: Ambiente de Cadastro na **iPORTO** para gerenciamento das **Chaves de API** e planos seleciondos.
  * **Chave de API**: Indica uma Chave única que deve ser gerada via **Central do Cliente**.
  * **Email**: Correio Eletrônico que será verificado de forma Online tendo como base regras definidas pela **iPORTO**.
+ * **Tipo de Plano**: Tipo de Plano que foi contratado junto a **iPORTO**. Esta opção poderá ser Profissional ou Avançado.
  * **@todo**: Itens que serão disponibilizados no futuro mas que ainda não foram testados para uso final.
 
 # Começar a usar
 
-Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere uma nova **Chave de API**. 
+Acesse sua [Central do Cliente](https://painel.iporto.com.br/painel/api) e gere uma nova **Chave de API**.
 É preciso possuir uma Chave de API válida, um cadastro ativo e plano contratado.
 
 ## Limites
-Cada **Chave de API** permite o limite de até `5.000` requisições ao dia. 
+Cada **Chave de API** permite o limite de até `5.000` requisições ao dia.
 Para um uso maior, é preciso solicitar liberação através da **Central do Cliente**, que pode ser verificado na guia **Suporte**, desta documentação.
 
 ## EndPoint
@@ -75,12 +77,12 @@ Toda requisição tem como base:
  `https://api-v2.iporto.com.br/api-v2/`
 
 ## Requisição
-Cada requisição, para **Validador de Email**, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`. 
+Cada requisição, para **Validador de Email**, é composta de 2 parâmetros obrigatórios que são `@email` e `@iPORTO_Api_ChavePublica`.
 Todas as requisições devem ser feitas via `https`.
 
 * Exemplo de requisição:
 ```curl
-curl https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx
+curl https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx/tipoDePlano/Avancado
 ```
 
 ## Resposta
@@ -90,14 +92,15 @@ Toda resposta da `API` utiliza padrão `REST`, neste caso, `RESTful JSON`.
 
 # Estrutura do Uso
 
-A estrutura de uso tem como base `Request` e `Response`. 
+A estrutura de uso tem como base `Request` e `Response`.
 `Request` indica o envio de dados para a `API` da **iPORTO** e `Response` indica a resposta com os dados formatados.
 
 ## Estrutura do `Request`
 | Propriedade | Descrição
 | ---: | :--- |
 | `string` **iPORTO_Api_ChavePublica** | `Obrigatório`. **Chave de API** que será utilizada para autorizar a requisição.
-|                   `string` **email** | `Obrigatório`. **Email** que será validado.
+|                  `string` **email**  | `Obrigatório`. **Email** que será validado.
+|             `string` **tipoDePlano** | `Opcional`. **Tipo de Plano** que será utilizado.
 
 ## Estrutura da `Response`
 | Propriedade | Descrição |
@@ -106,7 +109,7 @@ A estrutura de uso tem como base `Request` e `Response`.
 |       `array` meta | Dados sobre a API.
 |      `array` links | Links utilizados para `Request`.
 |   `array` messages | Mensagens sobre `Request`.
-|       `array` data | Itens retornados sobre `Request`. 
+|       `array` data | Itens retornados sobre `Request`.
 
 ### Attributes
 Disposição de atributos retornados para cada `Request`.
@@ -166,7 +169,7 @@ Disposição de atributos retornados para cada `Request`.
 |  `{}` | `dnsVerification` 	| `boolean` isDomainHasMxRecords 	| Informação de que Domínio possui entrada de DNS para Emails/MX.
 |  `{}` | `dnsVerification` 	| `array` recordDns 				| Entradas de DNS para Domínio.
 |  `{}` | `dnsVerification` 	| `array` recordWeb 				| Entradas de DNS para Domínios no âmbito Web.
-|  `{}` | `dnsVerification` 	| `array` recordMx 					| Entradas de DNS para Domínios no âmbito de Emails. 
+|  `{}` | `dnsVerification` 	| `array` recordMx 					| Entradas de DNS para Domínios no âmbito de Emails.
 |  `{}` | `mailboxVerification` | `array` 							| Verificações de Email com análise Holística.
 
 #### {infrastructure}
@@ -482,9 +485,9 @@ object(stdClass)#1 (7) {
 
 # Exemplos de Uso
 
-Para utilizar a chamada de `API` é preciso apenas efetuar uma requisição `HTTPS`. 
+Para utilizar a chamada de `API` é preciso apenas efetuar uma requisição `HTTPS`.
 Toda linguagem de programação que permite uma requisição `HTTPS` pode ser utilizada.
-Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final, 
+Todos os exemplos utilizarão a `variável` `@endpoint`, para uso, é preciso alterar esta variável por sua requisição final,
 tendo atenção a regra básica para os parâmetros necessários que são `@email` e  `@iPORTO_Api_ChavePublica`
 
  * [Gerar Chave de API iPORTO](http://painel.iporto.com.br/painel/api)
@@ -492,7 +495,7 @@ tendo atenção a regra básica para os parâmetros necessários que são `@emai
 
 
 ```
-@endpoint = "https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx";
+@endpoint = "https://api-v2.iporto.com.br/api-v2/ve_data/get/email/xx@domain.com/iPORTO_Api_ChavePublica/xx/tipoDePlano/Profissional";
 ```
 
 ### Curl
@@ -522,13 +525,13 @@ get_json = open(@endpoint).read
 ### Asp Clássico
 ```asp
 <%
-Set xmlHttp = Server.Createobject("MSXML2.ServerXMLHTTP.6.0") 
-xmlHttp.Open "GET", @endpoint, False 
-xmlHttp.Send 
-_RESTfulResponse = xmlHttp.responseText 
-xmlHttp.abort() 
-set xmlHttp = Nothing 
-get_json = _RESTfulResponse 
+Set xmlHttp = Server.Createobject("MSXML2.ServerXMLHTTP.6.0")
+xmlHttp.Open "GET", @endpoint, False
+xmlHttp.Send
+_RESTfulResponse = xmlHttp.responseText
+xmlHttp.abort()
+set xmlHttp = Nothing
+get_json = _RESTfulResponse
 ```
 
 # Contrato
